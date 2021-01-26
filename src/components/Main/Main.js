@@ -1,11 +1,11 @@
 import React from 'react';
+import SearchForm from '../SearchForm/SearchForm';
 
 function Main({ children }) {
   return (
-    <>
-      <h1>Main</h1>
-      {children}
-    </>
+    <div className='main'>
+      <SearchForm />
+    </div>
   )
 }
 

@@ -1,1 +1,16 @@
-
+.page {
+  min-width: 300px;
+  max-width: 1280px;
+  margin: 0 auto;
+  font-family: 'Roboto', 'Arial', 'Helvetica', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  background-color: #FFF;
+  color: #FFF;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  background-image: url('../../images/header-search-image.jpg');
+}
