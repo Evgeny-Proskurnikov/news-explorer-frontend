@@ -9,11 +9,18 @@
 }
 
 .header__logo {
+  width: 150px;
   font-family: 'Roboto Slab';
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
   line-height: 1.2;
+  transition: 0.5s linear;
+}
+
+.header__logo:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 .header__nav-link {
@@ -29,6 +36,12 @@
   align-items: center;
   align-self: stretch;
   margin-right: 32px;
+  transition: 0.5s linear;
+}
+
+.header__nav-link:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 .header__auth-btn {
@@ -45,4 +58,10 @@
   height: 48px;
   outline: none;
   color: #FFF;
+  transition: 0.5s linear;
+}
+
+.header__auth-btn:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }
