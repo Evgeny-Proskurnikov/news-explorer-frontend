@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
@@ -7,12 +8,7 @@ import SavedNews from '../SavedNews/SavedNews';
 function App() {
   return (
     <div className='page'>
-      <Header children={
-        <>
-          <Link to='/saved-news' className='header__nav-link'>Сохранённые статьи</Link>
-          <button type='button' className='header__auth-btn'>Авторизоваться</button>
-        </>
-      }/>
+      <Header />
 
       <Switch>
         <Route exact path='/'>
@@ -23,6 +19,7 @@ function App() {
         </Route>
       </Switch>
 
+      <Footer />
     </div>
   );
 }

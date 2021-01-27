@@ -37,3 +37,10 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Inter';
+  src: url(./Inter/inter-regular.woff) format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

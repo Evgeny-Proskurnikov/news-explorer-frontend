@@ -12,7 +12,7 @@ function SearchForm({ submitForm, formSubmitState, setFormSubmitState }) {
 
   return (
     <div className='search-container'>
-      <form className='form' name='search-form' onSubmit={onSubmit(handleSubmit)} noValidate>
+      <form className='form' name='search-form' onSubmit={handleSubmit(onSubmit)} noValidate>
         <h1 className='form__title'>Что творится в мире?</h1>
         <p className='form__about'>Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
 
@@ -20,7 +20,7 @@ function SearchForm({ submitForm, formSubmitState, setFormSubmitState }) {
           <input
             name="search"
             type="text"
-            className={cn('form__input', { "form__input_type_error":  errors.email })}
+            className='form__input'
             ref={register({
               required: {value: true, message: 'Заполните это поле'},
             })}
@@ -35,8 +35,8 @@ function SearchForm({ submitForm, formSubmitState, setFormSubmitState }) {
           >
             {formSubmitState ? 'Загрузка...' : 'Искать'}
           </button>
-          {errors.search && <span className="form__input-error">{errors.search.message}</span>}
         </div>
+        {errors.search && <span className="form__input-error">{errors.search.message}</span>}
       </form>
     </div>
   )

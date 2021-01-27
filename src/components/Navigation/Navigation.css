@@ -1,0 +1,34 @@
+.navigation {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation__link {
+  min-height: 80px;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33;
+  text-decoration: none;
+  border-bottom: solid 3px #FFF;
+  color: #FFF;
+  display: flex;
+  align-items: center;
+  margin-right: 32px;
+  transition: 0.5s linear;
+}
+
+.navigation__link:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.navigation__link_type_footer {
+  border: none;
+  color: #000;
+  font-weight: normal;
+  margin: 0;
+}

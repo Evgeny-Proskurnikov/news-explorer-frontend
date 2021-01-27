@@ -16,6 +16,7 @@
   font-weight: normal;
   font-size: 60px;
   line-height: 1.07;
+  color: #FFF;
 }
 
 .form__about {
@@ -26,6 +27,7 @@
   font-weight: normal;
   font-size: 18px;
   line-height: 1.33;
+  color: #FFF;
 }
 
 .form__input {
@@ -40,11 +42,16 @@
   flex-shrink: 0;
   text-indent: 24px;
   outline: none;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1.37;
 }
 
 .form__input-container {
   display: flex;
-  margin: 64px 0 80px;
+  margin: 64px 0 0;
 }
 
 .form__button {
@@ -54,6 +61,7 @@
   border-radius: 100px;
   border: none;
   padding: 0;
+  outline: none;
   font-family: Roboto, sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -63,10 +71,36 @@
   position: relative;
   right: 50px;
   flex-shrink: 0;
-  transition: 0.5s linear;
+  transition: 0.2s linear;
 }
 
 .form__button:hover {
   cursor: pointer;
-  box-shadow: 0 0 3px 6px rgba(255, 255, 255, 0.4);
+  background-color: #347EFF;
+}
+
+.form__button:focus {
+  background-color: #2A65CC;
+}
+
+.form__button_inactive {
+  background-color: #E6E8EB;
+  color: #B6BCBF;
+}
+
+.form__button_inactive:hover {
+  cursor: unset;
+  background-color: #E6E8EB;
+  color: #B6BCBF;
+}
+
+.form__input-error {
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1.37;
+  color: #FF0000;
+  margin: 5px 0 0 24px;
+  display: block;
 }

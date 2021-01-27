@@ -1,0 +1,48 @@
+.footer {
+  width: calc(100% - 208px);
+  margin: 0 auto;
+  min-height: 80px;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 40px;
+  align-items: center;
+}
+
+.footer__copyright {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1.37;
+  color: #B6BCBF;
+}
+
+.footer__links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 28px;
+}
+
+.footer__link {
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1.33;
+  color: #000;
+  text-decoration: none;
+  transition: 0.5s linear;
+}
+
+.footer__link:hover {
+  opacity: 0.5;
+}
+
+.footer__social-icon {
+  width: 21px;
+  height: 21px;
+}
+
