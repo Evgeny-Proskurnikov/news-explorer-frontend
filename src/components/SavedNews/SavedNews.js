@@ -1,10 +1,11 @@
 import React from 'react';
+import Elements from '../Elements/Elements';
 
-function SavedNews({ children }) {
+function SavedNews({ cards }) {
   return (
-    <>
-      <h2>SavedNews</h2>
-    </>
+    <section className='savednews'>
+      <Elements cards={cards} />
+    </section>
   )
 }
 

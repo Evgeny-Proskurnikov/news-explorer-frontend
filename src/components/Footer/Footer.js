@@ -6,9 +6,9 @@ import githubIcon from '../../images/github-icon.svg';
 
 function Footer() {
   return (
-    <div className='footer'>
+    <footer className='footer'>
       <p className="footer__copyright">&copy; 2021 Supersite, Powered by News API</p>
-      <Navigation linkClassName='navigation__link_type_footer' />
+      <Navigation rootLinkClassName='navigation__link_type_footer' />
       <ul className="footer__links">
         <li><a href="https://praktikum.yandex.ru" className="footer__link" rel='noreferrer' target="_blank">Яндекс.Практикум</a></li>
         <li>
@@ -22,7 +22,7 @@ function Footer() {
           </a>
         </li>
       </ul>
-    </div>
+    </footer>
   )
 }
 

@@ -1,13 +1,10 @@
 import React from 'react';
-import About from '../About/About';
-import SearchForm from '../SearchForm/SearchForm';
 
-function Main() {
+function Main({ children }) {
   return (
-    <div className='main'>
-      <SearchForm />
-      <About />
-    </div>
+    <main className='main'>
+      {children}
+    </main>
   )
 }
 

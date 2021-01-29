@@ -1,7 +1,7 @@
 .about {
   width: calc(100% - 208px);
   display: flex;
-  margin: 160px auto 80px;
+  margin: 80px auto 80px;
   gap: 56px;
 }
 

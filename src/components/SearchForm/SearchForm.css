@@ -1,7 +1,10 @@
-.search-container {
+.search-form {
   display: flex;
   justify-content: center;
-  border-top: 1px solid rgb(196, 196, 196, 0.2);
+  padding: 80px 0 80px;
+  margin-top: -80px;
+  background-image: url('../../images/header-search-image.jpg');
+  background-repeat: no-repeat;
 }
 
 .form {
@@ -11,7 +14,7 @@
 .form__title {
   max-width: 608px;
   margin: 80px 0 0;
-  font-family: Roboto Slab;
+  font-family: 'Roboto Slab';
   font-style: normal;
   font-weight: normal;
   font-size: 60px;
@@ -22,7 +25,7 @@
 .form__about {
   max-width: 545px;
   margin: 32px 0 0;
-  font-family: Roboto, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -42,7 +45,7 @@
   flex-shrink: 0;
   text-indent: 24px;
   outline: none;
-  font-family: Roboto, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -62,7 +65,7 @@
   border: none;
   padding: 0;
   outline: none;
-  font-family: Roboto, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -95,7 +98,7 @@
 }
 
 .form__input-error {
-  font-family: Roboto, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;

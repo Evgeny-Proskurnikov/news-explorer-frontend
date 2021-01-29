@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import cn from 'classnames';
+// import bgroundImage from '../../images/header-search-image.jpg'
 
 function SearchForm({ submitForm, formSubmitState, setFormSubmitState }) {
   const { register, handleSubmit, errors } = useForm({mode: 'onChange'});
@@ -11,7 +12,7 @@ function SearchForm({ submitForm, formSubmitState, setFormSubmitState }) {
   };
 
   return (
-    <div className='search-container'>
+    <section className='search-form'>
       <form className='form' name='search-form' onSubmit={handleSubmit(onSubmit)} noValidate>
         <h1 className='form__title'>Что творится в мире?</h1>
         <p className='form__about'>Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
@@ -31,14 +32,14 @@ function SearchForm({ submitForm, formSubmitState, setFormSubmitState }) {
           <button
             type="submit"
             className={cn('form__button', { "form__button_inactive": errors.search})}
-            disabled={errors.search}
+            disabled={errors.search && true}
           >
             {formSubmitState ? 'Загрузка...' : 'Искать'}
           </button>
         </div>
-        {errors.search && <span className="form__input-error">{errors.search.message}</span>}
+        {/* {errors.search && <span className="form__input-error">{errors.search.message}</span>} */}
       </form>
-    </div>
+    </section>
   )
 }
 

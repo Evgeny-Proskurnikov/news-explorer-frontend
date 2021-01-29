@@ -6,12 +6,10 @@
   font-style: normal;
   font-weight: normal;
   background-color: #FFF;
-  color: #000;
+  color: #1A1B22;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
-  background-image: url('../../images/header-search-image.jpg');
-  background-repeat: no-repeat;
 }
