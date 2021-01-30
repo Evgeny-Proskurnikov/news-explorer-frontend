@@ -36,3 +36,28 @@
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
 }
+
+@media screen and (max-width: 768px) {
+  .savednews-header {
+    width: calc(100% - 80px);
+    padding: 24px 0 32px;
+  }
+  
+  .savednews-header__text {
+    font-size: 14px;
+    line-height: 1.71;
+  }
+  
+  .savednews-header__title {
+    margin: 16px 0 0;
+    font-size: 30px;
+    line-height: 1.13;
+    max-width: 336px;
+  }
+  
+  .savednews-header__keywords {
+    margin: 16px 0 0;
+    font-size: 14px;
+    line-height: 1.71;
+  }
+}

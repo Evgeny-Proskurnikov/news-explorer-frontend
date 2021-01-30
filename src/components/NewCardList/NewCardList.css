@@ -35,3 +35,21 @@
   cursor: pointer;
   opacity: 0.8;
 }
+
+@media screen and (max-width: 768px) {
+  .new-card-list {
+    padding: 40px 0;
+  }
+
+  .new-card-list__title {
+    width: calc(100% - 80px);
+    margin: 0 auto 32px;
+    font-size: 30px;
+  }
+
+  .new-card-list__show-btn {
+    margin: 22px auto 0;
+    height: 56px;
+    width: 240px;
+  }
+}

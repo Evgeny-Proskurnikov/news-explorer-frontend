@@ -4,5 +4,13 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 400px));
   gap: 16px;
-  justify-content: space-around;
+  justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .elements {
+    width: calc(100% - 80px);
+    grid-template-columns: repeat(auto-fit, minmax(224px, 224px));
+    gap: 8px;
+  }
 }

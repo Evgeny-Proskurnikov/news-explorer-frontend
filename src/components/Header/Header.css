@@ -7,6 +7,7 @@
   border-bottom: 1px solid rgb(196, 196, 196, 0.2);
   position: relative;
   color: #FFF;
+  box-sizing: border-box;
 }
 
 .header__logo {
@@ -54,4 +55,16 @@
   display: inline-block;
   vertical-align: top;
   margin-left: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0 40px 0;
+    min-height: 66px;
+  }
+
+  .header__auth-btn {
+    font-size: 16px;
+    height: 40px;
+  }
 }

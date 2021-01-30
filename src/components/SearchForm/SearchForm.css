@@ -5,6 +5,7 @@
   margin-top: -80px;
   background-image: url('../../images/header-search-image.jpg');
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .form {
@@ -106,4 +107,37 @@
   color: #FF0000;
   margin: 5px 0 0 24px;
   display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .search-form {
+    padding: 66px 0 48px;
+    margin-top: -66px;
+    background-image: url('../../images/search-img768.jpg');
+  }
+
+  .form__title {
+    max-width: 385px;
+    margin: 38px 0 0;
+  }
+  
+  .form__about {
+    max-width: 448px;
+    margin: 16px 0 0;
+  }
+
+  .form__input-container {
+    margin: 48px 0 0;
+  }
+  
+  .form__input {
+    max-width: 448px;
+    height: 56px;
+  }
+
+  .form__button {
+    width: 160px;
+    height: 56px;
+    right: 160px;
+  }
 }

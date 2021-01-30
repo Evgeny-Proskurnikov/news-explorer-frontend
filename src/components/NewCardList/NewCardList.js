@@ -5,7 +5,7 @@ function NewCardList({ cards }) {
   return (
     <section className="new-card-list">
       <h2 className="new-card-list__title">Результаты поиска</h2>
-      <Elements cards={cards} />
+      <Elements cards={cards} categoryStyle={{display: 'none'}} />
       <button type="button" className="new-card-list__show-btn">Показать ещё</button>
     </section>
   )

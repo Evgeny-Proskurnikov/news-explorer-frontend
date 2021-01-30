@@ -33,3 +33,27 @@
   font-size: 18px;
   line-height: 1.33;
 }
+
+@media screen and (max-width: 768px) {
+  .about {
+    width: calc(100% - 80px);
+    margin: 40px auto 60px;
+    gap: 32px;
+  }
+  
+  .about__image {
+    max-width: 232px;
+    max-height: 232px;
+  }
+  
+  .about__title {
+    margin: 0 0 0;
+    font-size: 30px;
+    line-height: 1.33;
+  }
+  
+  .about__description {
+    max-width: 424px;
+    margin: 16px 0 0;
+  }
+}

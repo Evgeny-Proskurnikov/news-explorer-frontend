@@ -46,3 +46,15 @@
   height: 21px;
 }
 
+@media screen and (max-width: 768px) {
+  .footer {
+    width: calc(100% - 80px);
+    min-height: 64px;
+    gap: 28px;
+  }
+  
+  .footer__link {
+    font-size: 18px;
+    line-height: 1.33;
+  }
+} 
