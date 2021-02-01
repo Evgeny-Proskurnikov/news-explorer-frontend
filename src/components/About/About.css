@@ -47,7 +47,7 @@
   }
   
   .about__title {
-    margin: 0 0 0;
+    margin: 0;
     font-size: 30px;
     line-height: 1.33;
   }
@@ -55,5 +55,20 @@
   .about__description {
     max-width: 424px;
     margin: 16px 0 0;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .about {
+    flex-direction: column;
+    width: calc(100% - 32px);
+    margin: 32px auto 80px;
+    gap: 24px;
+  }
+  
+  .about__image {
+    max-width: 272px;
+    max-height: 272px;
+    align-self: center;
   }
 }

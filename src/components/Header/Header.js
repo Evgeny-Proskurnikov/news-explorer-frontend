@@ -2,23 +2,51 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 
-function Header({ headerStyle, logoutImgStyle, authBtnStyle, rootLinkClassName, newsLinkClassName }) {
+function Header({ 
+  headerClass, 
+  logoutImgClass, 
+  rootLinkClass, 
+  newsLinkClass,
+  newsLinkBorderWhite,
+  sliderBtnClass, 
+  handleSliderOpen, 
+  sliderOpened 
+}) {
   const loggedIn = true;
   const currentUser = 'Грета';
 
+  function handleSliderClick() {
+    handleSliderOpen();
+  }
+
   return (
-    <header className='header' style={headerStyle}>
+    <header className={sliderOpened ? 'header header_opened' : `header ${headerClass}`}>
       <p className='header__logo'>NewsExplorer</p>
-      <Navigation 
-        rootLinkClassName={rootLinkClassName}
-        children={
-          loggedIn && <li><Link to='/saved-news' className={`navigation__link ${newsLinkClassName}`}>Сохранённые статьи</Link></li>
-        }
+
+      <div 
+        className={sliderOpened ? 'header__slider-btn header__slider-btn_active' : `header__slider-btn ${sliderBtnClass}`} 
+        onClick={handleSliderClick}
       />
-      <button type='button' className='header__auth-btn' style={authBtnStyle}>
-        {loggedIn ? currentUser : 'Авторизоваться'}
-        {loggedIn && <span className='header__logout' style={logoutImgStyle}/>}
-      </button>
+
+      <div className={`header__container ${sliderOpened && 'header__container_opened'}`}>
+        <Navigation 
+          rootLinkClass={rootLinkClass}
+          children={loggedIn && 
+            <li>
+              <Link 
+                to='/saved-news' 
+                className={sliderOpened ? `navigation__link ${newsLinkBorderWhite}` : `navigation__link ${newsLinkClass}`}
+              >
+                Сохранённые статьи
+              </Link>
+            </li>
+          }
+        />
+        <button type='button' className='header__auth-btn'>
+          {loggedIn ? currentUser : 'Авторизоваться'}
+          {loggedIn && <span className={sliderOpened ? 'header__logout' : `header__logout ${logoutImgClass}`}/>}
+        </button>
+      </div>
     </header>
   )
 }

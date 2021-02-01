@@ -4,7 +4,6 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
-import logoutImage from '../../images/logout.svg'
 import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import NewCardList from '../NewCardList/NewCardList';
@@ -13,11 +12,21 @@ import { cards, savedCards } from '../../utils/data';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 
 function App() {
+  const [ sliderOpened, setSliderOpened ] = React.useState(false);
+
+  function handleSliderOpen() {
+    setSliderOpened(!sliderOpened);
+  }
+
   return (
     <div className='page'>
       <Switch>
         <Route exact path='/'>
-          <Header rootLinkClassName='navigation__link_type_root' />
+          <Header 
+            rootLinkClass='border_white' 
+            handleSliderOpen={handleSliderOpen}
+            sliderOpened={sliderOpened}
+          />
           <Main children={
             <>
               <SearchForm />
@@ -29,10 +38,13 @@ function App() {
         </Route>
         <Route path='/saved-news'>
           <Header 
-            headerStyle={{color: '#1A1B22'}}
-            logoutImgStyle={{backgroundImage: `url(${logoutImage})`}}
-            authBtnStyle={{border: '1px solid #1A1B22'}}
-            newsLinkClassName='navigation__link_type_news'
+            headerClass='header_type_news'
+            logoutImgClass='header__logout_type_news'
+            newsLinkClass='border_dark'
+            newsLinkBorderWhite='border_white'
+            sliderBtnClass='header__slider-btn_type_news'
+            handleSliderOpen={handleSliderOpen}
+            sliderOpened={sliderOpened}
           /> 
           <Main children={
             <>

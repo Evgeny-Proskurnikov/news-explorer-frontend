@@ -2,3 +2,9 @@
   background: #F5F6F7;
   padding: 62px 0;
 }
+
+@media screen and (max-width: 520px) {
+  .savednews {
+    padding: 24px 0;
+  }
+}

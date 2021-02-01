@@ -53,3 +53,19 @@
     width: 240px;
   }
 }
+
+@media screen and (max-width: 520px) {
+  .new-card-list {
+    padding: 32px 0;
+  }
+
+  .new-card-list__title {
+    width: calc(100% - 32px);
+    margin: 0 auto 24px;
+  }
+
+  .new-card-list__show-btn {
+    margin: 16px auto 0;
+    width: 288px;
+  }
+}

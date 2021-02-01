@@ -61,3 +61,24 @@
     line-height: 1.71;
   }
 }
+
+@media screen and (max-width: 520px) {
+  .savednews-header {
+    width: calc(100% - 32px);
+    padding: 8px 0 32px;
+  }
+  
+  .savednews-header__text {
+    font-size: 12px;
+    line-height: 2.0;
+  }
+  
+  .savednews-header__title {
+    max-width: 288px;
+  }
+  
+  .savednews-header__keywords {
+    font-size: 18px;
+    line-height: 1.33;
+  }
+}
