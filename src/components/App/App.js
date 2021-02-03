@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState, } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -10,12 +10,51 @@ import NewCardList from '../NewCardList/NewCardList';
 import About from '../About/About';
 import { cards, savedCards } from '../../utils/data';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
+import AuthModal from '../AuthModal/AuthModal';
+import RegisterModal from '../RegisterModal/RegisterModal';
+import SuccessModal from '../SuccessModal/SuccessModal';
 
 function App() {
-  const [ sliderOpened, setSliderOpened ] = React.useState(false);
+  const [ sliderOpened, setSliderOpened ] = useState(false);
+  const [ authModalState, setAuthModalState ] = useState(false);
+  const [ regModalState, setRegModalState ] = useState(false);
+  const [ successModalState, setSuccessModalState ] = useState(false);
 
+  // открытие слайд-меню
   function handleSliderOpen() {
     setSliderOpened(!sliderOpened);
+  }
+
+  // открытие модальных окон
+  function openAuthModal() {
+    closeAllPopups();
+    setAuthModalState(true);
+    setEscListener();
+  }
+  function openRegModal() {
+    closeAllPopups();
+    setRegModalState(true);
+    setEscListener();
+  }
+
+  // добавление обработчика закрытия модалок на ESC
+  function setEscListener() {
+    document.addEventListener('keyup', handleEscPopupClose);
+  }
+
+  // закрытие всех модальных окон
+  function closeAllPopups() {
+    setAuthModalState(false);
+    setRegModalState(false);
+    setSuccessModalState(false);
+    document.removeEventListener('keyup', handleEscPopupClose);
+  }
+
+  // закрытие модалки на Esc
+  function handleEscPopupClose(evt) {
+    if (evt.key === 'Escape') {
+      closeAllPopups();
+    }
   }
 
   return (
@@ -26,6 +65,7 @@ function App() {
             rootLinkClass='border_white' 
             handleSliderOpen={handleSliderOpen}
             sliderOpened={sliderOpened}
+            handleModalOpen={openAuthModal}
           />
           <Main children={
             <>
@@ -45,6 +85,7 @@ function App() {
             sliderBtnClass='header__slider-btn_type_news'
             handleSliderOpen={handleSliderOpen}
             sliderOpened={sliderOpened}
+            handleModalOpen={openAuthModal}
           /> 
           <Main children={
             <>
@@ -55,6 +96,9 @@ function App() {
         </Route>
       </Switch>
 
+      <AuthModal isOpen={authModalState} onClose={closeAllPopups} openRegModal={openRegModal} />
+      <RegisterModal isOpen={regModalState} onClose={closeAllPopups} openAuthModal={openAuthModal}/>
+      <SuccessModal isOpen={successModalState} onClose={closeAllPopups} openAuthModal={openAuthModal}/>
       <Footer />
     </div>
   );

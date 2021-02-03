@@ -7,7 +7,8 @@
 @import url(./components/Navigation/Navigation.css);
 @import url(./components/NewCardList/NewCardList.css);
 @import url(./components/NewsCard/NewsCard.css);
-@import url(./components/PopupWithForm/PopupWithForm.css);
+@import url(./components/ModalWithForm/ModalWithForm.css);
+@import url(./components/ModalForm/ModalForm.css);
 @import url(./components/Preloader/Preloader.css);
 @import url(./components/SavedNews/SavedNews.css);
 @import url(./components/SavedNewsHeader/SavedNewsHeader.css);

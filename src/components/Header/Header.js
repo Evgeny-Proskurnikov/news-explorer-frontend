@@ -10,13 +10,18 @@ function Header({
   newsLinkBorderWhite,
   sliderBtnClass, 
   handleSliderOpen, 
-  sliderOpened 
+  sliderOpened,
+  handleModalOpen
 }) {
   const loggedIn = true;
   const currentUser = 'Грета';
 
   function handleSliderClick() {
     handleSliderOpen();
+  }
+
+  function handleAuthClick() {
+    handleModalOpen();
   }
 
   return (
@@ -42,7 +47,7 @@ function Header({
             </li>
           }
         />
-        <button type='button' className='header__auth-btn'>
+        <button type='button' className='header__auth-btn' onClick={handleAuthClick}>
           {loggedIn ? currentUser : 'Авторизоваться'}
           {loggedIn && <span className={sliderOpened ? 'header__logout' : `header__logout ${logoutImgClass}`}/>}
         </button>

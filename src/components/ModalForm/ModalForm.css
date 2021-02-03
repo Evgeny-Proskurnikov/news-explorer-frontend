@@ -1,0 +1,135 @@
+.modal__form {
+  max-width: 358px;
+  width: 100%;
+  margin: 0 auto 0;
+  background-color: #FFF;
+}
+
+.modal__input {
+  width: 100%;
+  height: 30px;
+  margin: 0 auto 0;
+  border: 0;
+  border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.21;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.modal__input-error {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 1.25;
+  color: #FF0000;
+  margin: 5px 0 12px;
+  display: block;
+}
+
+.modal__input-name {
+  margin: 30px 0 8px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 1.25;
+  color: #2F71E5;
+}
+
+.modal__input-name:first-of-type {
+  margin: 0 0 8px;
+}
+
+.modal__save-button {
+  width: 100%;
+  height: 64px;
+  background: #2F71E5;
+  border-radius: 100px;
+  border: none;
+  margin: 40px 0 16px;
+  padding: 0;
+  outline: none;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33;
+  color: #FFFFFF;
+  transition: 0.2s linear;
+}
+
+.modal__save-button:hover {
+  cursor: pointer;
+  background-color: #347EFF;
+}
+
+.modal__save-button:focus {
+  background-color: #2A65CC;
+}
+
+.modal__save-button_inactive {
+  background-color: #E6E8EB;
+  color: #B6BCBF;
+}
+
+.modal__save-button_inactive:hover {
+  background-color: #E6E8EB;
+  color: #B6BCBF;
+  cursor: unset;
+}
+
+.modal__text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.21;
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.modal__link {
+  color: #2F71E5;
+  transition: .5s linear;
+}
+
+.modal__link:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.modal__link_type_success {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1.22;
+  text-align: start;
+  margin: 0 0 50px 36px;
+  display: block;
+}
+
+@media screen and (max-width: 520px) {
+  .modal__form {
+    max-width: calc(100% - 32px);
+  }
+
+  .modal__input {
+    max-width: unset;
+    font-size: 12px;
+    line-height: 1.25;
+  }
+
+  .modal__save-button {
+    margin: 24px 0 16px;
+  }
+
+  .modal__text {
+    margin: 0;
+  }
+}
