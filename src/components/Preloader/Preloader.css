@@ -1,0 +1,69 @@
+.preloader {
+  margin: 0;
+  padding-bottom: 80px;
+	min-height: 282px;
+	background-color: #F5F6F7;
+  overflow: hidden;
+  position: relative;
+}
+
+.preloader__spinner {
+	display: block;
+	width: 74px;
+	height: 74px;
+	border: 1px solid #444;
+	border-bottom-color: #888;
+	border-radius: 50%;
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: 80px auto 0;
+	
+	animation: spin .75s infinite linear;
+}
+
+.preloader__spinner_type_unfound {
+  animation: unset;
+  border: 0;
+  background-image: url('../../images/not-found_v1.svg');
+  width: 96px;
+	height: 96px;
+}
+
+@keyframes spin {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.preloader__text {
+  max-width: 356px;
+  width: 100%;
+  margin: 184px auto 0;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1.33;
+  text-align: center;
+  color: #B6BCBF;
+}
+
+.preloader__text_type_unfound {
+  margin: 16px auto 0;
+}
+
+.preloader__title {
+  max-width: 356px;
+  width: 100%;
+  margin: 200px auto 0;
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 1.15;
+  text-align: center;
+}
