@@ -21,18 +21,22 @@ function NewsCard({ card, category, categoryStyle, favIconClass }) {
 
   return (
     <div className="card">
-      <div className="card__conteiner">
+      <div>
         <div className="card__category" style={categoryStyle}>{category}</div>
         <button type="button" className={`card__favorite-btn ${favIconClass}`} onClick={handleLikeClick}/>
         <div className="card__tooltip">Убрать из сохранённых</div>
-        <img src={card ? card.link : ''} alt={card ? card.name : ''} className="card__image" onClick={handleClick}/>
+        <a href={card ? card.url : '#'} target='_blank' rel="noreferrer">
+          <img src={card ? card.urlToImage : ''} alt={card ? card.title : ''} className="card__image" onClick={handleClick}/>
+        </a>
         <div className="card__container">
-          <p className="card__date">{card ? card.date : ''}</p>
-          <h2 className="card__title">{card ? card.name : ''}</h2>
+          <p className="card__date">{card ? card.publishedAt : ''}</p>
+          <h2 className="card__title">{card ? card.title : ''}</h2>
           <p className="card__text">{card ? card.description : ''}</p>
         </div>
       </div>
-      <p className="card__news-source">{card ? card.source : ''}</p>
+      <a className="card__news-source" href={card ? card.url : '#'} target='_blank' rel="noreferrer">
+        {card ? card.source.name : ''}
+      </a>
     </div>
   );
 }

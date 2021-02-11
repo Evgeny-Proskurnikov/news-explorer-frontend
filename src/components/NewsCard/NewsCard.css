@@ -84,7 +84,7 @@
 
 .card__image {
   width: 100%;
-  height: 272px;
+  min-height: 272px;
   object-fit: cover;
   object-position: top;
 }
@@ -127,8 +127,8 @@
 }
 
 .card__news-source {
-  width: calc(100% - 48px);
-  margin: 0 auto 24px;
+  width: fit-content;
+  margin: 5px 0 24px 24px;
   font-family: 'Roboto Slab';
   font-style: normal;
   font-weight: bold;
@@ -136,7 +136,13 @@
   line-height: 1.25;
   letter-spacing: 0.4px;
   text-transform: uppercase;
+  text-decoration: none;
   color: #B6BCBF;
+  transition: .5s linear;
+}
+
+.card__news-source:hover {
+  color: #1A1B22;
 }
 
 @media screen and (max-width: 768px) {

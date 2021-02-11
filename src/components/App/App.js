@@ -1,4 +1,4 @@
-import { React, useState, } from 'react';
+import { React, useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -8,17 +8,37 @@ import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import NewCardList from '../NewCardList/NewCardList';
 import About from '../About/About';
-import { cards, savedCards } from '../../utils/data';
+import { savedCards } from '../../utils/data';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import AuthModal from '../AuthModal/AuthModal';
 import RegisterModal from '../RegisterModal/RegisterModal';
 import SuccessModal from '../SuccessModal/SuccessModal';
+import newsRequest from '../../utils/NewsApi';
+import NewCardListErr from '../NewCardListErr/NewCardListErr';
 
 function App() {
   const [ sliderOpened, setSliderOpened ] = useState(false);
   const [ authModalState, setAuthModalState ] = useState(false);
   const [ regModalState, setRegModalState ] = useState(false);
   const [ successModalState, setSuccessModalState ] = useState(false);
+  const [ cards, setCards ] = useState([]);
+  const [ cardsCounter, setCardsCounter ] = useState(2);
+  const [ formLoadingState, setFormLoadingState ] = useState(false);
+  const [ errState, setErrState ] = useState(false);
+  const [ preloaderState, setPreloaderState ] = useState(false);
+  const [ newsNotFound, setNewsNotFound ] = useState(false);
+  const [ newsFound, setNewsFound ] = useState(false);
+  const [ showBtnState, setShowBtnState ] = useState(true);
+
+  useEffect(() => {
+    // получаем массив ключей localStorage, если в массиве есть cards
+    // достаём из хранилища карточки и записываем в стейт
+    if (Object.keys(localStorage).includes('cards')) {
+      const storedCards = JSON.parse(localStorage.getItem('cards'));
+      setCards(storedCards);
+      setNewsFound(true);
+    }
+  }, [])
 
   // открытие слайд-меню
   function handleSliderOpen() {
@@ -57,6 +77,46 @@ function App() {
     }
   }
 
+  // поиск новостей
+  function handleSearch(query) {
+    setErrState(false);
+    setNewsFound(false);
+    setNewsNotFound(false);
+    setFormLoadingState(true);
+    setPreloaderState(true);
+    setShowBtnState(true);
+    setCardsCounter(2);
+
+    newsRequest.getNews(query)
+      .then(res => {
+        if (res.articles.length === 0) {
+          return setNewsNotFound(true);
+        }
+        localStorage.setItem('cards', JSON.stringify(res.articles));
+        setCards(res.articles);
+        setNewsNotFound(false);
+        setNewsFound(true);
+        setPreloaderState(false);
+      })
+      .catch(err => {
+        console.log(err);
+        setErrState(true);
+        setPreloaderState(false);
+      })
+      .finally(() => {
+        setFormLoadingState(false);
+      });
+  }
+
+  // отображение следующих трёх карточек массива
+  function showNextCards() {
+    const counter = cardsCounter + 3;
+    setCardsCounter(counter);
+    if (counter >= cards.length - 1) {
+      setShowBtnState(false);
+    }
+  }
+
   return (
     <div className='page'>
       <Switch>
@@ -69,9 +129,17 @@ function App() {
           />
           <Main children={
             <>
-              <SearchForm />
-              <Preloader />
-              <NewCardList cards={cards}/>
+              <SearchForm submitForm={handleSearch} formLoadingState={formLoadingState} />
+              {preloaderState && <Preloader newsNotFound={newsNotFound} />}
+              {newsFound &&
+                <NewCardList 
+                  cards={cards} 
+                  showNextCards={showNextCards} 
+                  cardsCounter={cardsCounter}
+                  showBtnState={showBtnState}
+                />
+              }
+              {errState && <NewCardListErr />}
               <About />
             </>
           }/>

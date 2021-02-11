@@ -18,6 +18,7 @@
   display: block;
   margin: 64px auto 0;
   padding: 0;
+  outline: none;
   height: 64px;
   width: 288px;
   background: #FFFFFF;
@@ -33,7 +34,7 @@
 
 .new-card-list__show-btn:hover {
   cursor: pointer;
-  opacity: 0.8;
+  box-shadow: 0 0 10px #1A1B22;
 }
 
 @media screen and (max-width: 768px) {
