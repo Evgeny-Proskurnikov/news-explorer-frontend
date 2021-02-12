@@ -29,6 +29,7 @@ function App() {
   const [ newsNotFound, setNewsNotFound ] = useState(false);
   const [ newsFound, setNewsFound ] = useState(false);
   const [ showBtnState, setShowBtnState ] = useState(true);
+  const [ loggedIn, setLoggedIn ] = useState(false);
 
   useEffect(() => {
     // получаем массив ключей localStorage, если в массиве есть cards
@@ -126,6 +127,7 @@ function App() {
             handleSliderOpen={handleSliderOpen}
             sliderOpened={sliderOpened}
             handleModalOpen={openAuthModal}
+            loggedIn={loggedIn}
           />
           <Main children={
             <>
@@ -137,6 +139,7 @@ function App() {
                   showNextCards={showNextCards} 
                   cardsCounter={cardsCounter}
                   showBtnState={showBtnState}
+                  loggedIn={loggedIn}
                 />
               }
               {errState && <NewCardListErr />}
@@ -165,8 +168,8 @@ function App() {
       </Switch>
 
       <AuthModal isOpen={authModalState} onClose={closeAllPopups} openRegModal={openRegModal} />
-      <RegisterModal isOpen={regModalState} onClose={closeAllPopups} openAuthModal={openAuthModal}/>
-      <SuccessModal isOpen={successModalState} onClose={closeAllPopups} openAuthModal={openAuthModal}/>
+      <RegisterModal isOpen={regModalState} onClose={closeAllPopups} openAuthModal={openAuthModal} />
+      <SuccessModal isOpen={successModalState} onClose={closeAllPopups} openAuthModal={openAuthModal} />
       <Footer />
     </div>
   );

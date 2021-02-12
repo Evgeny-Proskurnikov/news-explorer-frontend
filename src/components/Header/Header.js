@@ -11,9 +11,9 @@ function Header({
   sliderBtnClass, 
   handleSliderOpen, 
   sliderOpened,
-  handleModalOpen
+  handleModalOpen,
+  loggedIn,
 }) {
-  const loggedIn = true;
   const currentUser = 'Грета';
 
   function handleSliderClick() {

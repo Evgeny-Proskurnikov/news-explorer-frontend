@@ -45,9 +45,13 @@
   top: 24px;
 }
 
-.card__favorite-btn:hover {
+.card__favorite-btn_active:hover {
   cursor: pointer;
   background-image: url(../../images/fav-hover.svg);
+}
+
+.card__favorite-btn_marked {
+  background-image: url(../../images/fav-marked.svg);
 }
 
 .card__favorite-btn_type_savednews {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Elements from '../Elements/Elements';
 
-function NewCardList({ cards, showNextCards, cardsCounter, showBtnState }) {
+function NewCardList({ cards, showNextCards, cardsCounter, showBtnState, loggedIn }) {
   function handleBtnClick() {
     showNextCards();
   }
@@ -9,7 +9,7 @@ function NewCardList({ cards, showNextCards, cardsCounter, showBtnState }) {
   return (
     <section className="new-card-list">
       <h2 className="new-card-list__title">Результаты поиска</h2>
-      <Elements cards={cards} categoryStyle={{display: 'none'}} cardsCounter={cardsCounter} />
+      <Elements cards={cards} categoryStyle={{display: 'none'}} cardsCounter={cardsCounter} loggedIn={loggedIn} />
       {showBtnState &&
         <button type="button" className="new-card-list__show-btn" onClick={handleBtnClick}>
           Показать ещё
