@@ -13,7 +13,7 @@ function NewsCard({ card, category, categoryStyle, favIconClass, loggedIn, favBt
   // const cardLikeButtonClassName = `${isLiked ? "card__like-button card__like-button_status_active" : "card__like-button"}`; 
   const favBtnClass = cn(
     `card__favorite-btn ${favIconClass}`, 
-    { "card__favorite-btn_active": loggedIn, "card__favorite-btn_marked": favBtnMarked }
+    { "card__favorite-btn_inactive": !loggedIn, "card__favorite-btn_marked": favBtnMarked }
   );
 
   function handleLikeClick() {
@@ -25,7 +25,9 @@ function NewsCard({ card, category, categoryStyle, favIconClass, loggedIn, favBt
       <div>
         <div className="card__category" style={categoryStyle}>{category}</div>
         <button type="button" className={favBtnClass} onClick={handleLikeClick} disabled={!loggedIn}/>
-        <div className="card__tooltip">Убрать из сохранённых</div>
+        <div className="card__tooltip">
+          {loggedIn ? 'Убрать из сохранённых' : 'Войдите, чтобы сохранять статьи'}
+        </div>
         <a href={card ? card.url : '#'} target='_blank' rel="noreferrer">
           <img src={card ? card.urlToImage : ''} alt={card ? card.title : ''} className="card__image"/>
         </a>

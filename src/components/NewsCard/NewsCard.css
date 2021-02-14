@@ -45,9 +45,14 @@
   top: 24px;
 }
 
-.card__favorite-btn_active:hover {
+.card__favorite-btn:hover {
   cursor: pointer;
   background-image: url(../../images/fav-hover.svg);
+}
+
+.card__favorite-btn_inactive:hover + .card__tooltip {
+  visibility: visible;
+  opacity: 1;
 }
 
 .card__favorite-btn_marked {
@@ -184,6 +189,11 @@
     width: calc(100% - 32px);
     margin: 0 auto 16px;
   }
+
+  .card__tooltip {
+    right: 2%;
+    top: 13%;
+  }
 }
 
 @media screen and (max-width: 520px) {
@@ -198,5 +208,10 @@
   .card__title {
     margin: 10px 0 0;
     max-height: 48px;
+  }
+
+  .card__tooltip {
+    right: 22%;
+    top: 24px;
   }
 }

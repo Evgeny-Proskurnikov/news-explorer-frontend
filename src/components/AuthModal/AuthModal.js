@@ -2,7 +2,7 @@ import React from 'react';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import ModalForm from '../ModalForm/ModalForm';
 
-function AuthModal({ isOpen, onClose, onUpdateUser, formSubmitState, openRegModal }) {
+function AuthModal({ isOpen, onClose, onLogin, formLoadingState, openRegModal }) {
   return (
     <ModalWithForm 
       title='Вход' 
@@ -11,9 +11,9 @@ function AuthModal({ isOpen, onClose, onUpdateUser, formSubmitState, openRegModa
       onClose={onClose}
       children={
         <ModalForm 
-          onUpdateUser={onUpdateUser} 
-          formSubmitState={formSubmitState} 
+          formLoadingState={formLoadingState} 
           openModal={openRegModal}
+          onLogin={onLogin}
         />
       }
     />
