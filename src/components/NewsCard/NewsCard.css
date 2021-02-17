@@ -26,6 +26,7 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 1.71;
+  text-transform: capitalize;
 }
 
 .card__favorite-btn {
@@ -94,6 +95,7 @@
 .card__image {
   width: 100%;
   min-height: 272px;
+  height: 272px;
   object-fit: cover;
   object-position: top;
 }

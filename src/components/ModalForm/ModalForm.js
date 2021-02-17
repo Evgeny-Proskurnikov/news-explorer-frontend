@@ -11,7 +11,6 @@ function ModalForm({ onLogin, formLoadingState, openModal }) {
 
   const onSubmit = data => {
     onLogin(data);
-    console.log(data);
   };
 
   return (

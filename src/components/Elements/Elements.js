@@ -1,9 +1,17 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { formatDate } from '../../utils/utils';
 import NewsCard from '../NewsCard/NewsCard'
 
-function Elements({ cards, categoryStyle, favIconClass, cardsCounter, loggedIn }) {  
+function Elements({
+  cards,
+  keywordStyle,
+  favIconClass,
+  cardsCounter,
+  loggedIn,
+  addToFavorite,
+  removeFromFavorite,
+  spinnerState
+}) {  
   return (
     <div className="elements">
       {cards.map((el, index) => {
@@ -11,11 +19,12 @@ function Elements({ cards, categoryStyle, favIconClass, cardsCounter, loggedIn }
           return <NewsCard
             card={el}
             key={uuidv4()}
-            category={el.category}
-            categoryStyle={categoryStyle}
-            favIconClass={favIconClass}
+            keywordStyle={keywordStyle}
+            favIconClass={favIconClass} 
             loggedIn={loggedIn}
-            formatedDate={formatDate(el.publishedAt)}
+            addToFavorite={addToFavorite}
+            removeFromFavorite={removeFromFavorite}
+            spinnerState={spinnerState}
           />
         }
         return null;

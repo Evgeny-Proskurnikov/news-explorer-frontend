@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
-import { CurrentUserContext, userObj } from '../contexts/CurrentUserContext';
+import { CurrentUserContext, userObj } from '../../contexts/CurrentUserContext';
 import * as auth from '../../utils/auth';
 import newsRequest from '../../utils/NewsApi';
 import Footer from '../Footer/Footer';
@@ -11,12 +11,13 @@ import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import NewCardList from '../NewCardList/NewCardList';
 import About from '../About/About';
-import { savedCards } from '../../utils/data';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import AuthModal from '../AuthModal/AuthModal';
 import RegisterModal from '../RegisterModal/RegisterModal';
 import SuccessModal from '../SuccessModal/SuccessModal';
 import NewCardListErr from '../NewCardListErr/NewCardListErr';
+import apiRequest from '../../utils/api';
+import { formatDate } from '../../utils/utils';
 
 function App() {
   const [ sliderOpened, setSliderOpened ] = useState(false);
@@ -24,9 +25,11 @@ function App() {
   const [ regModalState, setRegModalState ] = useState(false);
   const [ successModalState, setSuccessModalState ] = useState(false);
   const [ cards, setCards ] = useState([]);
+  const [ favoriteCards, setFavoriteCards ] = useState([]);
   const [ cardsCounter, setCardsCounter ] = useState(2);
   const [ formLoadingState, setFormLoadingState ] = useState(false);
-  const [ spinnerState, setSpinnerState ] = useState(false);
+  const [ headerSpinnerState, setHeaderSpinnerState ] = useState(false);
+  const [ cardSpinnerState, setCardSpinnerState ] = useState(false);
   const [ errState, setErrState ] = useState(false);
   const [ preloaderState, setPreloaderState ] = useState(false);
   const [ newsNotFound, setNewsNotFound ] = useState(false);
@@ -105,8 +108,20 @@ function App() {
         if (res.articles.length === 0) {
           return setNewsNotFound(true);
         }
-        localStorage.setItem('cards', JSON.stringify(res.articles));
-        setCards(res.articles);
+        const cards = res.articles.map(el => {
+          return {
+            keyword: query,
+            title: el.title,
+            text: el.description,
+            date: formatDate(el.publishedAt),
+            source: el.source.name, 
+            link: el.url, 
+            image: el.urlToImage,
+            isMarked: false
+          }
+        });
+        localStorage.setItem('cards', JSON.stringify(cards));
+        setCards(cards);
         setNewsNotFound(false);
         setNewsFound(true);
         setPreloaderState(false);
@@ -126,6 +141,63 @@ function App() {
     if (counter >= cards.length - 1) {
       setShowBtnState(false);
     }
+  }
+
+  // добавление карточки в избранное
+  function handleAddToFavorite(card) {
+    setCardSpinnerState(true);
+    // отделяем ненужные поля деструктуризацией
+    const { __v, isMarked, ...favCard } = card;
+    
+    apiRequest.saveArticle(favCard)
+      .then((newCard) => {
+        const markedCard = {...newCard, isMarked: true};
+        setFavoriteCards([markedCard, ...favoriteCards]);
+
+        // создаем новый массив чтобы не мутировать стейт
+        // по индексу заменяем в массиве карточку
+        const refreshedCards = [...cards];
+        const index = cards.findIndex(el => el.link === card.link);
+        refreshedCards.splice(index, 1, markedCard);
+        setCards(refreshedCards);
+        localStorage.setItem('cards', JSON.stringify(refreshedCards));
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(() => setCardSpinnerState(false));
+  }
+
+  // получение массива избранных карточек
+  function getFavoriteCards() {
+    apiRequest.getArticles()
+      .then(cards => {
+        const markedCards = cards.map(c => {
+          return {...c, isMarked: true};
+        });
+        setFavoriteCards(markedCards);
+      })
+      .catch(err => console.log(err))
+  }
+ 
+  // удаление избранной карточки
+  function removeFromFavorite(card) {
+    setCardSpinnerState(true);
+    apiRequest.deleteArticle(card._id)
+      .then(res => {
+        console.log(res)
+        // filter возвращает новый массив элементов удовлетворяющих условию
+        const newFavoriteCards = favoriteCards.filter(c => c._id !== card._id);
+        setFavoriteCards(newFavoriteCards);
+
+        const { _id, ...newCard } = card;
+        const refreshedCards = [...cards];
+        const index = cards.findIndex(el => el.link === card.link);
+        refreshedCards.splice(index, 1, {...newCard, isMarked: false});
+        setCards(refreshedCards); 
+      })
+      .catch(err => console.log(err))
+      .finally(() => setCardSpinnerState(false));
   }
 
   // регистрация пользователя
@@ -152,7 +224,6 @@ function App() {
   // логин пользователя
   function handleLogin({ email, password }) {
     setFormLoadingState(true);
-
     function authorizeHandler(user) {
       setCurrentUser(user);
       setLoggedIn(true);
@@ -164,8 +235,8 @@ function App() {
       .then(res => {
         if (res) {
           localStorage.setItem('token', res.token);
+          getFavoriteCards();
           const storageUser = JSON.parse(localStorage.getItem('user'));
-
           if (!storageUser) {
             return auth.getUserData(res.token)
               .then(user => {
@@ -175,7 +246,6 @@ function App() {
               })
               .catch(err => console.log(err));
           }
-
           if (storageUser.email === email) {
             return authorizeHandler(storageUser);
           }
@@ -191,10 +261,11 @@ function App() {
   function tokenCheck() {
     const jwt = localStorage.getItem('token');
     if (jwt) {
-      setSpinnerState(true);
+      setHeaderSpinnerState(true);
       auth.getUserData(jwt)
         .then(res => {
           if (res.email) {
+            getFavoriteCards();
             setCurrentUser(res);
             setLoggedIn(true);
             history.push('/');
@@ -203,7 +274,7 @@ function App() {
         .catch(err => {
           console.log(err);
         })
-        .finally(() => setSpinnerState(false));
+        .finally(() => setHeaderSpinnerState(false));
     }
   }
 
@@ -225,7 +296,7 @@ function App() {
               onLogin={openAuthModal}
               loggedIn={loggedIn}
               onLogout={handleLogOut}
-              spinnerState={spinnerState}
+              spinnerState={headerSpinnerState}
             />
             <Main children={
               <>
@@ -238,6 +309,9 @@ function App() {
                     cardsCounter={cardsCounter}
                     showBtnState={showBtnState}
                     loggedIn={loggedIn}
+                    addToFavorite={handleAddToFavorite}
+                    removeFromFavorite={removeFromFavorite}
+                    spinnerState={cardSpinnerState}
                   />
                 }
                 {errState && <NewCardListErr />}
@@ -245,6 +319,19 @@ function App() {
               </>
             }/>
           </Route>
+          {/* <ProtectedRoute 
+            exact
+            path='/saved-news' 
+            loggedIn={loggedIn} 
+            component={Main}
+            onEditProfile={handleEditProfileClick} 
+            onAddPlace={handleAddPlaceClick} 
+            onEditAvatar={handleEditAvatarClick} 
+            onCardClick={handleCardClick}
+            cards={cards}
+            onCardLike={handleCardLike}
+            onCardDelete={handleDeleteCardClick}
+          /> */}
           <Route path='/saved-news'>
             <Header 
               headerClass='header_type_news'
@@ -260,8 +347,8 @@ function App() {
             /> 
             <Main children={
               <>
-                <SavedNewsHeader />
-                <SavedNews cards={savedCards} />
+                <SavedNewsHeader currentUser={currentUser} />
+                <SavedNews cards={favoriteCards} loggedIn={loggedIn} removeFromFavorite={removeFromFavorite} />
               </>
             }/>
           </Route>

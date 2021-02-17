@@ -10,9 +10,7 @@ function ModalRegForm({ onRegister, formLoadingState, openModal, isUserExist }) 
   }
 
   const onSubmit = data => {
-    // formSubmitState.setState(true);
     onRegister(data);
-    console.log(data);
   };
 
   return (
