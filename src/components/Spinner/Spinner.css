@@ -14,8 +14,19 @@
 }
 
 .spinner_type_header {
-  top: 25%;
+  top: 26%;
   left: 90%;
+  width: 30px;
+  height: 30px;
+}
+
+@media screen and (max-width: 520px) {
+  .spinner_type_header {
+    top: 18%;
+    left: 85%;
+    width: 25px;
+    height: 25px;
+  }
 }
 
 @keyframes spin {

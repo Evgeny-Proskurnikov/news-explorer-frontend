@@ -126,6 +126,10 @@
   font-weight: normal;
   font-size: 26px;
   line-height: 1.15;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
 }
 
 .card__text {
@@ -135,6 +139,10 @@
   font-weight: normal;
   font-size: 16px;
   line-height: 1.37;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
 }
 
 .card__news-source {

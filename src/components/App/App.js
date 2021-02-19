@@ -3,6 +3,8 @@ import { Route, Switch, useHistory } from 'react-router-dom';
 import { CurrentUserContext, userObj } from '../../contexts/CurrentUserContext';
 import * as auth from '../../utils/auth';
 import newsRequest from '../../utils/NewsApi';
+import apiRequest from '../../utils/api';
+import { formatDate } from '../../utils/utils';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -16,8 +18,7 @@ import AuthModal from '../AuthModal/AuthModal';
 import RegisterModal from '../RegisterModal/RegisterModal';
 import SuccessModal from '../SuccessModal/SuccessModal';
 import NewCardListErr from '../NewCardListErr/NewCardListErr';
-import apiRequest from '../../utils/api';
-import { formatDate } from '../../utils/utils';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   const [ sliderOpened, setSliderOpened ] = useState(false);
@@ -194,7 +195,8 @@ function App() {
         const refreshedCards = [...cards];
         const index = cards.findIndex(el => el.link === card.link);
         refreshedCards.splice(index, 1, {...newCard, isMarked: false});
-        setCards(refreshedCards); 
+        setCards(refreshedCards);
+        localStorage.setItem('cards', JSON.stringify(refreshedCards)); 
       })
       .catch(err => console.log(err))
       .finally(() => setCardSpinnerState(false));
@@ -319,39 +321,28 @@ function App() {
               </>
             }/>
           </Route>
-          {/* <ProtectedRoute 
+          <ProtectedRoute
             exact
-            path='/saved-news' 
-            loggedIn={loggedIn} 
-            component={Main}
-            onEditProfile={handleEditProfileClick} 
-            onAddPlace={handleAddPlaceClick} 
-            onEditAvatar={handleEditAvatarClick} 
-            onCardClick={handleCardClick}
-            cards={cards}
-            onCardLike={handleCardLike}
-            onCardDelete={handleDeleteCardClick}
-          /> */}
-          <Route path='/saved-news'>
-            <Header 
-              headerClass='header_type_news'
-              logoutImgClass='header__logout_type_news'
-              newsLinkClass='border_dark'
-              newsLinkBorderWhite='border_white'
-              sliderBtnClass='header__slider-btn_type_news'
-              handleSliderOpen={handleSliderOpen}
-              sliderOpened={sliderOpened}
-              onLogin={openAuthModal}
-              loggedIn={loggedIn}
-              onLogout={handleLogOut}
-            /> 
-            <Main children={
+            path='/saved-news'
+            loggedIn={loggedIn}
+            mainComponent={Main}
+            headerComponent={Header}
+            headerClass='header_type_news'
+            logoutImgClass='header__logout_type_news'
+            newsLinkClass='border_dark'
+            newsLinkBorderWhite='border_white'
+            sliderBtnClass='header__slider-btn_type_news'
+            handleSliderOpen={handleSliderOpen}
+            sliderOpened={sliderOpened}
+            onLogin={openAuthModal}
+            onLogout={handleLogOut}
+            children={
               <>
-                <SavedNewsHeader currentUser={currentUser} />
+                <SavedNewsHeader currentUser={currentUser} cards={favoriteCards} />
                 <SavedNews cards={favoriteCards} loggedIn={loggedIn} removeFromFavorite={removeFromFavorite} />
               </>
-            }/>
-          </Route>
+            }
+          />
         </Switch>
 
         <AuthModal

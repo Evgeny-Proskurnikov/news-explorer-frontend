@@ -8,7 +8,7 @@ export class NewsApi {
   getNews(query) {
     return fetch(
       `${this._url}q=${query}&from=${this._pastDate}&to=${this._curDate}
-      &pageSize=100&sortBy=relevancy&language=ru`,
+      &pageSize=100&language=ru`,
       {
         method: 'GET',
         headers: {

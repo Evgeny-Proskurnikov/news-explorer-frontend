@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Navigation from '../Navigation/Navigation';
+import Spinner from '../Spinner/Spinner';
 
 function Header({ 
   headerClass, 
@@ -26,18 +27,21 @@ function Header({
   function handleAuthClick() {
     loggedIn ? onLogout() : onLogin();
   }
-
+  
   return (
     <header className={sliderOpened ? 'header header_opened' : `header ${headerClass}`}>
       <p className='header__logo'>NewsExplorer</p>
 
-      <div 
-        className={sliderOpened ? 'header__slider-btn header__slider-btn_active' : `header__slider-btn ${sliderBtnClass}`} 
-        onClick={handleSliderClick}
-      />
+      {!spinnerState &&
+        <div 
+          className={sliderOpened ? 'header__slider-btn header__slider-btn_active' : `header__slider-btn ${sliderBtnClass}`} 
+          onClick={handleSliderClick}
+        />
+      }
 
       {spinnerState ? 
-        <div className='preloader__spinner preloader__spinner_type_header'/>
+        <Spinner typeClass='spinner_type_header' />
+        // <div className='preloader__spinner preloader__spinner_type_header'/>
         :
         <div className={`header__container ${sliderOpened && 'header__container_opened'}`}>
           <Navigation 
