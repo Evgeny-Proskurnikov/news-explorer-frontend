@@ -1,38 +1,46 @@
 import React from "react";
-// import { CurrentUserContext } from "../contexts/CurrentUserContext"
+import cn from "classnames";
+import Spinner from "../Spinner/Spinner";
 
-function NewsCard({ card, category, categoryStyle, favIconClass }) {
-  // const currentUser = React.useContext(CurrentUserContext);
-
-  // // Определяем, являемся ли мы владельцем текущей карточки
-  // const isOwn = card.owner === currentUser._id;
-  // // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
-  // const isLiked = card.likes.some(i => i === currentUser._id);
-
-  // const cardLikeButtonClassName = `${isLiked ? "card__like-button card__like-button_status_active" : "card__like-button"}`; 
+function NewsCard({
+  card,
+  addToFavorite,
+  removeFromFavorite,
+  keywordStyle,
+  favIconClass,
+  loggedIn,
+  spinnerState
+}) {
+  const favBtnClass = cn(
+    `card__favorite-btn ${favIconClass}`, 
+    { "card__favorite-btn_inactive": !loggedIn, "card__favorite-btn_marked": card.isMarked }
+  );
 
   function handleClick() {
-    // onCardClick(card);
-  }
-
-  function handleLikeClick() {
-    // onCardLike(card);
+    card.isMarked ? removeFromFavorite(card) : addToFavorite(card);
   }
 
   return (
     <div className="card">
-      <div className="card__conteiner">
-        <div className="card__category" style={categoryStyle}>{category}</div>
-        <button type="button" className={`card__favorite-btn ${favIconClass}`} onClick={handleLikeClick}/>
-        <div className="card__tooltip">Убрать из сохранённых</div>
-        <img src={card ? card.link : ''} alt={card ? card.name : ''} className="card__image" onClick={handleClick}/>
+      <div>
+        <div className="card__category" style={keywordStyle}>{card.keyword}</div>
+        <button type="button" className={favBtnClass} onClick={handleClick} disabled={!loggedIn}/>
+        <div className="card__tooltip">
+          {loggedIn ? 'Убрать из сохранённых' : 'Войдите, чтобы сохранять статьи'}
+        </div>
+        <a href={card ? card.link : '#'} target='_blank' rel="noreferrer">
+          {spinnerState && <Spinner />}
+          <img src={card ? card.image : ''} alt={card ? card.title : ''} className="card__image"/>
+        </a>
         <div className="card__container">
           <p className="card__date">{card ? card.date : ''}</p>
-          <h2 className="card__title">{card ? card.name : ''}</h2>
-          <p className="card__text">{card ? card.description : ''}</p>
+          <h2 className="card__title">{card ? card.title : ''}</h2>
+          <p className="card__text">{card ? card.text : ''}</p>
         </div>
       </div>
-      <p className="card__news-source">{card ? card.source : ''}</p>
+      <a className="card__news-source" href={card ? card.link : '#'} target='_blank' rel="noreferrer">
+        {card ? card.source : ''}
+      </a>
     </div>
   );
 }

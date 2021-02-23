@@ -1,13 +1,11 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-function SearchForm({ submitForm, formSubmitState, setFormSubmitState }) {
-  const { register, handleSubmit } = useForm({mode: 'onChange'});
+function SearchForm({ submitForm, formLoadingState }) {
+  const { register, handleSubmit, errors } = useForm({mode: 'onChange'});
 
   const onSubmit = data => {
-    // setFormSubmitState(true);
-    // submitForm(data);
-    console.log(data);
+    submitForm(data.search);
   };
 
   return (
@@ -21,15 +19,16 @@ function SearchForm({ submitForm, formSubmitState, setFormSubmitState }) {
             type="text"
             className='form__input'
             ref={register({
-              required: {value: true, message: 'Заполните это поле'},
+              required: {value: true, message: 'Нужно ввести ключевое слово'},
             })}
             placeholder="Введите тему новости"
             autoComplete="off"
           />
           <button type="submit" className='form__button'>
-            {formSubmitState ? 'Загрузка...' : 'Искать'}
+            {formLoadingState ? 'Загрузка...' : 'Искать'}
           </button>
         </div>
+        {errors.search && <span className="form__input-error">{errors.search.message}</span>}
       </form>
     </section>
   )

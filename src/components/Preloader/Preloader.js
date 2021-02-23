@@ -1,9 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 
-function Preloader() {
-  const newsNotFound = true;
-
+function Preloader({ newsNotFound }) {
   return (
     <section className="preloader">
       <div className={cn('preloader__spinner', { "preloader__spinner_type_unfound": newsNotFound })}/>

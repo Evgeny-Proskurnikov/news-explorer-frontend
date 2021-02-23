@@ -33,6 +33,28 @@
 	height: 96px;
 }
 
+.preloader__spinner_type_header {
+  width: 30px;
+  height: 30px;
+  border-width: 2px;
+  top: 25%;
+  left: 90%;
+  right: unset;
+  bottom: unset;
+  margin: 0;
+}
+
+.preloader__spinner_type_header {
+  width: 30px;
+  height: 30px;
+  border-width: 2px;
+  top: 25%;
+  left: 90%;
+  right: unset;
+  bottom: unset;
+  margin: 0;
+}
+
 @keyframes spin {
 	100% {
 		transform: rotate(360deg);

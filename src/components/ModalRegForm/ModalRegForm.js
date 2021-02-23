@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import cn from 'classnames';
 
-function ModalRegForm({ onUpdateUser, formSubmitState, openModal, isUserExist }) {
+function ModalRegForm({ onRegister, formLoadingState, openModal, isUserExist }) {
   const { register, handleSubmit, errors } = useForm({mode: 'onChange'});
 
   const handleClick = () => {
@@ -10,9 +10,7 @@ function ModalRegForm({ onUpdateUser, formSubmitState, openModal, isUserExist })
   }
 
   const onSubmit = data => {
-    // formSubmitState.setState(true);
-    // onUpdateUser(data);
-    console.log(data);
+    onRegister(data);
   };
 
   return (
@@ -70,7 +68,7 @@ function ModalRegForm({ onUpdateUser, formSubmitState, openModal, isUserExist })
         className={cn('modal__save-button', { "modal__save-button_inactive": errors.email || errors.password })}
         disabled={errors.email || errors.password}
       >
-        {formSubmitState ? 'Загрузка...' : 'Войти'}
+        {formLoadingState ? 'Загрузка...' : 'Зарегистрироваться'}
       </button>
 
       <p className="modal__text">или&ensp;

@@ -2,7 +2,7 @@ import React from 'react';
 import ModalRegForm from '../ModalRegForm/ModalRegForm';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 
-function RegisterModal({ isOpen, onClose, onUpdateUser, formSubmitState, openAuthModal }) {
+function RegisterModal({ isOpen, onClose, onRegister, formLoadingState, openAuthModal, isUserExist }) {
   return (
     <ModalWithForm 
       title='Регистрация' 
@@ -11,9 +11,10 @@ function RegisterModal({ isOpen, onClose, onUpdateUser, formSubmitState, openAut
       onClose={onClose}
       children={
         <ModalRegForm
-          onUpdateUser={onUpdateUser} 
-          formSubmitState={formSubmitState} 
+          onRegister={onRegister} 
+          formLoadingState={formLoadingState} 
           openModal={openAuthModal}
+          isUserExist={isUserExist}
         />
       }
     />

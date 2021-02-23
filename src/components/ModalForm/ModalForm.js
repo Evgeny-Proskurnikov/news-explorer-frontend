@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import cn from 'classnames';
 
-function ModalForm({ onUpdateUser, formSubmitState, openModal }) {
+function ModalForm({ onLogin, formLoadingState, openModal }) {
   const { register, handleSubmit, errors } = useForm({mode: 'onChange'});
 
   const handleClick = () => {
@@ -10,9 +10,7 @@ function ModalForm({ onUpdateUser, formSubmitState, openModal }) {
   }
 
   const onSubmit = data => {
-    // formSubmitState.setState(true);
-    // onUpdateUser(data);
-    console.log(data);
+    onLogin(data);
   };
 
   return (
@@ -54,7 +52,7 @@ function ModalForm({ onUpdateUser, formSubmitState, openModal }) {
         className={cn('modal__save-button', { "modal__save-button_inactive": errors.email || errors.password })}
         disabled={errors.email || errors.password}
       >
-        {formSubmitState ? 'Загрузка...' : 'Войти'}
+        {formLoadingState ? 'Загрузка...' : 'Войти'}
       </button>
       <p className="modal__text">или&ensp;
         <span className="modal__link" onClick={handleClick}>Зарегистрироваться</span>
