@@ -1,6 +1,6 @@
 import React from "react";
 import cn from "classnames";
-import Spinner from "../Spinner/Spinner";
+// import Spinner from "../Spinner/Spinner";
 
 function NewsCard({
   card,
@@ -29,7 +29,7 @@ function NewsCard({
           {loggedIn ? 'Убрать из сохранённых' : 'Войдите, чтобы сохранять статьи'}
         </div>
         <a href={card ? card.link : '#'} target='_blank' rel="noreferrer">
-          {spinnerState && <Spinner />}
+          {/* {spinnerState && <Spinner />} */}
           <img src={card ? card.image : ''} alt={card ? card.title : ''} className="card__image"/>
         </a>
         <div className="card__container">
