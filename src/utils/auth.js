@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.nexplorer.evpro.students.nomoreparties.xyz';
+export const BASE_URL = 'https://api.newsexplorer.evpro.students.nomoredomains.rocks';
 
 export const register = (data) => {
   return fetch(`${BASE_URL}/signup`, {

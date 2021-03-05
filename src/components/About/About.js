@@ -16,7 +16,7 @@ function About() {
         <p className='about__description'>
           Закончил годовое обучение в Яндекс.Практикум и нахожусь в активном поиске работы.<br/>
           Мой стек: HTML5/CSS3 JS/React/Redux/Redux-thunk Node/Express/MongoDB.<br/>
-          Если вы заинтересовались, напишите мне в telegram: @evgenypros.
+          Напишите мне в telegram: @evgenypros.
           Буду рад сотрудничеству!
         </p>
       </div>

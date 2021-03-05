@@ -54,7 +54,7 @@ export class Api {
 }
 
 const apiRequest = new Api({
-  url: 'https://api.nexplorer.evpro.students.nomoreparties.xyz',
+  url: 'https://api.newsexplorer.evpro.students.nomoredomains.rocks',
 })
 
 export default apiRequest;
